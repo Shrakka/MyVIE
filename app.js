@@ -1,35 +1,21 @@
 const express = require('express');
-
-const { fetchOffers } = require("./controllers");
+const { getAllOffers, getOffers, getRegionOffers, getCategoryOffers } = require("./controllers");
+const µ = require("./utils/µ");
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-
+// Views
 app.set('view engine', 'pug');
+app.get('/', (_, res) => { res.render('index', { title: "Wecome", message: "Go to /offers/220" }); });
 
-app.get('/', (req, res) => {
-  res.render('index', { title: "Hey", message: "Go to /offers/220" });
-})
+// Offers
+app.get("/offers", µ.send(getAllOffers));
+app.get("/offers/regions/:regionIndex/categories/:categoryIndex", µ.send(getOffers));
 
-app.get("/data", async (req, res) => {
-  const offers = await fetchOffers();
-  console.log(Object.keys(offers));
-  res.sendFile("views/test.html", { root: __dirname });
-})
+app.get("/offers/regions/:regionIndex", µ.send(getRegionOffers));
+app.get("/offers/categories/:categoryIndex", µ.send(getCategoryOffers));
 
-app.get("/offers", async (req, res) => {
-  const offers = await fetchOffers();
-  res.send({ offers });
-})
-
-app.get("/offers/:index", async (req, res) => {
-  const offers = await fetchOffers(parseFloat(req.params.index));
-  res.send({ offers });
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
-
+// Start app
+app.listen(port, () => { console.log(`Example app listening at http://localhost:${port}`) });
 
