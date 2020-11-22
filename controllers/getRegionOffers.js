@@ -1,10 +1,8 @@
+const { categoriesByIndex } = require("../constants");
 const { fetchOffers } = require("../lib");
 
-const { categoriesByIndex } = require("../constants");
+Object.assign(module.exports, { getRegionOffers });
 
-Object.assign(module.exports, {
-  getRegionOffers
-});
 
 async function getRegionOffers(req) {
   const regionIndex = req.params.regionIndex;
