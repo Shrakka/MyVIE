@@ -5,7 +5,7 @@ Object.assign(module.exports, {
 });
 
 async function getOffers(req) {
-    const regionIndex = parseFloat(req.params.regionIndex);
-    const categoryIndex = parseFloat(req.params.categoryIndex);
+    const regionIndex = req.params.regionIndex;
+    const categoryIndex = req.params.categoryIndex;
     return fetchOffers({ regionIndex, categoryIndex });
 }

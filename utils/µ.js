@@ -8,9 +8,11 @@ function send(cb) {
     return async (req, res) => {
         try {
             const value = await cb(req, res);
+            res.status(200);
             res.send(value);
         } catch (error) {
             console.error(error);
+            res.status(500);
             res.send(error);
         }
     };
