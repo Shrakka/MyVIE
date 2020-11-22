@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000;
 
 // Views
 app.set('view engine', 'pug');
-app.get('/', (_, res) => { res.render('index', { title: "Wecome", message: "Go to /offers/220" }); });
+app.get('/', µ.render({ title: "MyVIE - API", message: "Go to /offers!" }));
 
 // Offers
 app.get("/offers", µ.send(getAllOffers));

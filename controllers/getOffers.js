@@ -1,14 +1,11 @@
-// const { fetchOffers } = require("../lib");
+const { fetchOffers } = require("../lib");
 
 Object.assign(module.exports, {
     getOffers
 });
 
-async function getOffers() {
-    // async (req, res) => {
-    //     const index = parseFloat(req.params.index);
-    //     const offers = await fetchOffersByIdex(index);
-    //     res.send({ offers });
-    //   }
-    return "getOffers";
+async function getOffers(req) {
+    const regionIndex = parseFloat(req.params.regionIndex);
+    const categoryIndex = parseFloat(req.params.categoryIndex);
+    return fetchOffers({ regionIndex, categoryIndex });
 }

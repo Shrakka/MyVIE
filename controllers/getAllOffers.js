@@ -5,5 +5,6 @@ Object.assign(module.exports, {
 });
 
 async function getAllOffers() {
+    // TODO: fetch all pages for all categories
     return fetchOffers();
 }
